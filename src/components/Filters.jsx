@@ -66,7 +66,7 @@ class Filters extends Component {
 
                 <FormGroup>
                     <Col sm={9}>
-                        <Button bsStyle="primary">
+                        <Button bsStyle="success">
                             Применить
                         </Button>
                     </Col>

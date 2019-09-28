@@ -80,9 +80,12 @@ class TrainMap extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/allRoutes", {
+        fetch("http://10.70.8.249:8889/allRoutes", {
             method: 'GET',
-            headers: {"Access-Control-Allow-Origin": "*"}
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                'Authorization': 'Basic dXNlcjpwYXNzd29yZA=='
+            }
         }).then(response => response.json())
             .then((result)=>{
                 this.setState({markers: result});
@@ -118,7 +121,7 @@ class TrainMap extends Component {
                 );
             });
             LeafletMarkers.push(...temp);*/
-        const LeafletMarkers1212 = [];
+        /*const LeafletMarkers1212 = [];
         Object.keys(routes).map(function(key) {
             let markerColor = "#" + Math.random().toString(16).slice(2,8);
             const staticPositions = [[56.2995677,43.8757591],
@@ -136,7 +139,7 @@ class TrainMap extends Component {
                 return null;
             });
             LeafletMarkers1212.push(...temp2222);
-        });
+        });*/
 
         let LeafletMarkers2 = [];
         Object.keys(routes).forEach(function(key) {
@@ -167,13 +170,13 @@ class TrainMap extends Component {
                     url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                     minZoom = {2} maxZoom = {19} tileSize = {256}
                 />
-                <TileLayer
+                {/*<TileLayer
                     attribution='<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap'
                     url='http://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'
                     minZoom = {2} maxZoom = {19} tileSize = {256}
-                />
-                {/*{LeafletMarkers1212}
-                {LeafletMarkers2}*/}
+                />*/}
+                {/*{LeafletMarkers1212}*/}
+                {LeafletMarkers2}
                 {/*<Polyline key={1} positions={[
                     [56.2995677,43.8757591],
                     [56.3738682,43.836145],
