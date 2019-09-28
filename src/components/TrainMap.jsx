@@ -1,9 +1,9 @@
 import Leaflet from 'leaflet';
 import {GeoJSON, Map, Marker, Popup, TileLayer, Polygon, Polyline} from 'react-leaflet';
 import React, {Component} from 'react';
-import {mapConfig} from './util';
+import {mapConfig} from '../util';
 import {renderToStaticMarkup} from 'react-dom/server';
-import './ReactLeafletMap.styl';
+import '../ReactLeafletMap.styl';
 
 Leaflet.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/';
 
