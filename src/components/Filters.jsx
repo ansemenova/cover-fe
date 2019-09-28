@@ -7,10 +7,7 @@ class Filters extends Component {
         super(props);
 
         this.state = {
-            from: '',
-            to: '',
-            selectedOperator: {},
-            operators: ["TELE2", "Megafon", "MTC", "Билайн"]
+            operators: ["Теле2", "Мегафон", "МТС", "Билайн"]
         };
     };
 
@@ -31,9 +28,9 @@ class Filters extends Component {
                     <Col sm={7}>
                         <FormControl
                             type="text"
-                            value={this.state.from}
-                            placeholder="Введите начальную точку мрашрута"
-                            onChange={(e) => this.setState({from: e})}
+                            value={this.props.from}
+                            placeholder="Введите начальную точку маршрута"
+                            onChange={this.props.onFromChange}
                         />
                     </Col>
                 </FormGroup>
@@ -45,9 +42,9 @@ class Filters extends Component {
                     <Col sm={7}>
                         <FormControl
                             type="text"
-                            value={this.state.to}
+                            value={this.props.to}
                             placeholder="Введите конечную точку маршрута"
-                            onChange={(e) => this.setState({to: e})}
+                            onChange={this.props.onToChange}
                         />
                     </Col>
                 </FormGroup>
@@ -57,8 +54,8 @@ class Filters extends Component {
                         <ControlLabel>Выберите оператора связи</ControlLabel>
                     </Col>
                     <Col sm={5}>
-                        <FormControl componentClass="select" value={this.state.selectedOperator}
-                                     onChange={(e) => this.setState({selectedOperator: e})}>
+                        <FormControl componentClass="select" multiple value={this.props.selectedOperator}
+                                     onChange={this.props.onOperatorChange}>
                             {this.mapObjectToOptions(this.state.operators)}
                         </FormControl>
                     </Col>
@@ -66,7 +63,7 @@ class Filters extends Component {
 
                 <FormGroup>
                     <Col sm={9}>
-                        <Button bsStyle="success">
+                        <Button bsStyle="success" onClick={this.props.onApply}>
                             Применить
                         </Button>
                     </Col>

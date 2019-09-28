@@ -38,11 +38,11 @@
 
 .leaflet-container {
   height: 600px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
 .leaflet-div-icon {
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
 }
