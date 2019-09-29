@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import TrainMap from "./TrainMap";
 import Filters from "./Filters";
 import {Col, Grid, Row} from "react-bootstrap";
+import {BACKEND_URL, GEO_CODER_URL, GEO_CODER_URL_PART} from "../const/Constants";
+import {authHeader} from "../util";
 
 class MapComponent extends Component {
 
@@ -31,26 +33,23 @@ class MapComponent extends Component {
         this.setState({
             selectedOperator: selectedValues
         });
-    }
+    };
 
     onFromChange = (e) => {
         this.setState({from: e.target.value});
-    }
+    };
 
     onToChange = (e) => {
         this.setState({to: e.target.value});
-    }
+    };
 
     onApplyButton = () => {
         this.fillRouteCoordinate('from', 'fromCoordinate');
         this.fillRouteCoordinate('to', 'toCoordinate');
 
-        fetch("http://10.70.8.249:8889/mobiletrack?operator=" + this.state.selectedOperator.join(','), {
+        fetch(BACKEND_URL + this.state.selectedOperator.join(','), {
             method: 'GET',
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': 'Basic dXNlcjpwYXNzd29yZA=='
-            }
+            headers: authHeader()
         }).then(response => response.json())
             .then((result)=>{
                 let points = [];
@@ -68,12 +67,12 @@ class MapComponent extends Component {
             .catch((err) => {
                 window.console && console.log('ERROR', err);
             });
-    }
+    };
 
     fillRouteCoordinate = (fieldName, coordinateName) =>  {
         let from = encodeURI(this.state[fieldName]);
-        fetch("https://nominatim.openstreetmap.org/search/" + from
-            + "?format=json&addressdetails=1&limit=1&polygon_svg=1").then(response => response.json())
+        fetch(GEO_CODER_URL + from + GEO_CODER_URL_PART)
+            .then(response => response.json())
             .then((result) => {
                 this.setState({
                     [coordinateName]: [result[0].lat, result[0].lon]
@@ -82,7 +81,7 @@ class MapComponent extends Component {
             .catch((err) => {
                 window.console && console.log('ERROR', err);
             });
-    }
+    };
 
     render() {
         return (<div className='mapStyle'>
