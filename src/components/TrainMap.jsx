@@ -44,7 +44,7 @@ class TrainMap extends Component {
                 let divStyle = {
                     color: getColor()
                 };
-                const iconMarkup = renderToStaticMarkup(<i className=" fas fa-map-marker-alt fa-2x" style={divStyle}/>);
+                const iconMarkup = renderToStaticMarkup(<i className=" fas fa-map-marker-alt fa-5x" style={divStyle}/>);
                 const customMarkerIcon = Leaflet.divIcon({
                     html: iconMarkup,
                 });
